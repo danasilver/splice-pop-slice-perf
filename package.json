@@ -1,0 +1,11 @@
+{
+  "name": "random-pairs",
+  "version": "0.0.0",
+  "description": "Create random subsets from an array.",
+  "main": "index.js",
+  "author": "Dana Silver <dsilver@middlebury.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "benchmark": "^1.0.0"
+  }
+}
