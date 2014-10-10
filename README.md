@@ -22,6 +22,8 @@ multiple pops (large subset) x 383,924,836 ops/sec ±15.79% (68 runs sampled)
 Fastest is slice (large subset)
 ```
 
+![Graph of results](results.png)
+
 ### Summary
 
 Use pop if you only need to remove a few elements from the end of an array; use
