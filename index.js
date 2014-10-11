@@ -3,28 +3,29 @@ var Benchmark = require('benchmark');
 var suite = new Benchmark.Suite;
 
 Benchmark.prototype.setup = '\
-var a = [],\n\
-    sets = [],\n\
-    i = 10000;\n\
-while (i--) a.push(i);\n\
+  function createArray () {\n\
+    var a = [], i = 10000;\n\
+    while (i--) a.push(i);\n\
+    return a;\n\
+  }\n\
 ';
 
 suite
 .add('splice (small subset)', '\
-  var n = 2;\n\
+  var n = 2, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     sets.push(a.splice(a.length - n, n));\n\
   }'
 )
 .add('slice (small subset)', '\
-  var n = 2;\n\
+  var n = 2, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     sets.push(a.slice(a.length - n));\n\
     a.length -= n;\n\
   }'
 )
 .add('multiple pops (small subset)', '\
-  var n = 2;\n\
+  var n = 2, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     var set = [];\n\
     for (var i = 0; i \x3C n; i++) {\n\
@@ -34,20 +35,20 @@ suite
   }'
 )
 .add('splice (large subset)', '\
-  var n = 1000;\n\
+  var n = 1000, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     sets.push(a.splice(a.length - n, n));\n\
   }'
 )
 .add('slice (large subset)', '\
-  var n = 1000;\n\
+  var n = 1000, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     sets.push(a.slice(a.length - n));\n\
     a.length -= n;\n\
   }'
 )
 .add('multiple pops (large subset)', '\
-  var n = 1000;\n\
+  var n = 1000, a = createArray(), sets = [];\n\
   while (a.length >= n) {\n\
     var set = [];\n\
     for (var i = 0; i \x3C n; i++) {\n\
